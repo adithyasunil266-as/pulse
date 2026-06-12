@@ -9,13 +9,15 @@ print (greet("Adithya"))
 data=[{"q":"The best time is now.","a":"Some author"}]
 print(data[0]["q"])
 
-try:
-    result=risky_function()
+def risky_function():
+    try:
+        result=risky_function()
+        return "Test successful"
     except Exception as e:
-        print(f"something went wrong :{e}")
+        return f"something went wrong :{e}"
 
 import requests
-from datatime import date
+from datetime import date
 
 def get_weather(city="Thiruvananthapuram"):
     try:
@@ -33,8 +35,8 @@ def get_quote():
         quote=data[0]["q"]
         author=data[0]["a"]
         return f"{quote} - {author}"
-except Exception as e:
-    return f"Quote unavailable ({e})"
+    except Exception as e:
+        return f"Quote unavailable ({e})"
 
 def build_summary():
     today = date.today().strftime("%A, %d %B %Y")
@@ -48,7 +50,6 @@ PULSE - Daily Summary
 
 WEATHER
 {weather}
-"""
 
 TODAY'S QUOTE
 {quote}
@@ -64,5 +65,5 @@ def run():
         f.write(summary)
         print("Pulse ran successfully.")
     
-if _name_=="_main_":
+if __name__=="__main__":
     run()
