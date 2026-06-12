@@ -65,5 +65,4 @@ def run():
         print("Pulse ran successfully.")
     
 if _name_=="_main_":
-    run()    
-print("My Github project using python")
+    run()
