@@ -8,13 +8,13 @@ on:
   
 jobs:
   run-pulse:
-    runs-on: ubunutu-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Set up Python
-        uses: actions/checkout@v5
+        uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
@@ -22,7 +22,7 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Run Pulse Bot
-        run: python bot.python
+        run: python bot.py
 
       - name: Upload summary as artifact
         uses: actions/upload-artifact@v4
