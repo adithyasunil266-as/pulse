@@ -96,7 +96,7 @@ def send_email(summary_text):
     sender = os.environ.get("EMAIL_USER")
     password = os.environ.get("EMAIL_PASS")
     receiver = os.environ.get("EMAIL_USER")
- 
+
     msg = MIMEText(summary_text)
     msg["Subject"] = "Pulse - Daily Summary"
     msg["From"] = sender
