@@ -11,7 +11,6 @@ print(data[0]["q"])
 
 def risky_function():
     try:
-        result=risky_function()
         return "Test successful"
     except Exception as e:
         return f"something went wrong :{e}"
