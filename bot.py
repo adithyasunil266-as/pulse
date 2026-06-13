@@ -16,13 +16,20 @@ def risky_function():
         return f"something went wrong :{e}"
 
 import requests
+import os
 from datetime import date
 
 def get_weather(city="Thiruvananthapuram"):
     try:
-        response = requests.get(f"https://wttr.in/{city}?format=3", timeout=10)
-        response.raise_for_status()
-        return response.text.strip()
+        API_KEY = os.environ["OPENWEATHER_API_KEY"]
+        url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={API_KEY}&units=metric"
+
+        response = requests.get(url, timeout=10)
+        data = response.json()
+
+        temp = data["main"]["temp"]
+        desc = data["weather"][0]["description"]
+        return f"{city}: {temp} degree celcius,{desc}"
     except Exception as e:
         return f"Weather unavailable ({e})"
 
