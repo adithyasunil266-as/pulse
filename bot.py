@@ -37,10 +37,21 @@ def get_quote():
     except Exception as e:
         return f"Quote unavailable ({e})"
 
+def get_tech_news():
+    try:
+        response = requests.get("https://hn.algolia.com/api/v1/search?tags=front_page", timeout=10)
+        response.raise_for_status()
+        data = response.json() 
+        headline = data["hits"][0]["title"]
+        return headline
+    except Exception as e:
+        return f"Tech news unavailable ({e})"       
+
 def build_summary():
     today = date.today().strftime("%A, %d %B %Y")
     weather = get_weather()
     quote=get_quote()
+    tech_news = get_tech_news()
 
     summary = f"""
 PULSE - Daily Summary
@@ -52,6 +63,9 @@ WEATHER
 
 TODAY'S QUOTE
 {quote}
+
+TECH NEWS
+{tech_news}
 
 """
     return summary
